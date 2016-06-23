@@ -1,0 +1,42 @@
+<div class="row section" ng-controller='topicsController as TC'>
+<h3>Welcome {{TC.user_session.name}}</h3>
+
+<div class="col s4">
+<h4>Add a new Topic</h4>
+<form>
+	<label>Topic</label>
+	<input type="text" ng-model='TC.newTopic.topic' />
+	<label>Description</label>
+	<textarea ng-model='TC.newTopic.description'></textarea>
+	<label>Category</label>
+	<select ng-model='TC.newTopic.category'>
+		<option>HTML</option>
+		<option>Ruby on Rails</option>
+		<option>MySql</option>
+		<option>UX</option>
+		<option>Web Development</option>
+	</select>
+	<button class="btn waves-effect waves-light right" ng-click='TC.create()'>Submit</button>
+</form>
+</div>
+<div class="col s8">
+	<table class="striped">
+		<thead>
+			<tr>
+				<th>Category</th>
+				<th>Topic</th>
+				<th>User Name</th>
+				<th>Posts</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat='topic in TC.topics'>
+				<td>{{topic.category}}</td>
+				<td class="blue-text" ng-click='TC.show(topic._id)'><u>{{topic.topic}}</u></td>
+				<td class="blue-text" ng-click='TC.show(topic._user._id)'>{{topic._user.name}}</td>
+				<td>{{topic._answers.length}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</div>
